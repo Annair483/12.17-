@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" href="../css/base.css"> -->
+	<script src="../js/common.js"></script>
+	<script src="../lib/jquery-3.2.1.js"></script>
+</head>
+<body>
+	<input type="text" class="cols">
+	<input type="text" class="rows">
+	<input type="button" class="btn" value="生成表格">
+	<div class="output"></div>
+	<script>
+		jQuery(function($){
+			var $cols = $('.cols');
+			var $rows = $('.rows');
+			var $btn = $('.btn');
+			var $output = $('.output');
+			$btn.click(function(){
+				new setTable().init();
+			})
+			//生成表格 属性 颜色
+			function setTable(){
+				this.color=getRandomColor;
+				this._cols=$cols[0].value;
+				this._rows=$rows[0].value;
+			}
+			//创建 table tbody tr td
+			setTable.prototype = {
+				init:function(){
+					var $table = $('<table>');
+					 this.$tbody = $('<tbody>');
+					for(var i=0;i<this._cols;i++){
+						this.$tr = $('<tr>');
+						for(var j=0;j<this._rows;j++){
+							var $td = $('<td>');
+							$td.css('background',getRandomColor).html(i+''+j);
+							this.$tr.append($td);
+						}
+						var $delBtn = $('<button>').html('删除').addClass('delBtn');
+						var $cloneBtn = $('<button>').html('复制').addClass('cloneBtn');
+						this.$tr.append($delBtn,$cloneBtn);
+						this.$tbody.append(this.$tr);
+					}
+					$table.append(this.$tbody);
+					$output.append($table);	
+					$table.click((e)=>{
+						if(e.target.className == 'delBtn'){
+							this.del(e.target);
+						} else if(e.target.className == 'cloneBtn'){
+							this.add(e.target);
+						}
+					});
+				},
+				del:function(e){
+					$(e).closest('tr').remove()
+				},
+				add:function(e){
+					this.$tbody.append($(e).closest('tr').clone(true,true));
+				}
+			}
+		})
+	</script>
+</body>
+</html>
