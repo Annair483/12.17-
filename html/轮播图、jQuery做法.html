@@ -3,61 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>04滚动动轮播图</title>
-    <style>
-        ul{list-style: none;padding:0;margin:0;}
-        .focus img{display: block;}
-        .focus{position:relative;overflow:hidden;height: 320px;}
-        .focus ul{position:absolute;overflow:hidden;}
-        .focus ul li{float:left;}
-        .focus .page{position:absolute;right:0;bottom:0;padding:10px;}
-        .focus .page span{display:inline-block;margin:0 5px;width:30px;height:30px;line-height:30px;background-color:rgba(0,0,0,.6);text-align:center;color:#fff;border-radius: 50%;box-shadow:0 0 10px rgba(0,0,0,.5);}
-        .focus .page span.active{background-color: rgba(255,0,0,.8);}
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
     </style>
+    <link rel="stylesheet" type="text/css"  href="../lib/jQuery-Ann_lunbo/jq-Ann-lunbo.css" />
     <script src="../js/common.js"></script>
     <script src="../js/jquery-3.2.1.js"></script>
-    
+    <script src="../lib/jQuery-Ann_lunbo/jq-Ann-lunbo.js"></script>
+   
 </head>
+
 <body>
     <div class="focus">
-        <ul>
-            <li><img src="../images/001.jpg"></li>
-            <li><img src="../images/002.jpg"></li>
-            <li><img src="../images/003.jpg"></li>
-        </ul>
-
     </div>
     <script>
         jQuery(function($){
-            var $focus = $('.focus');
-            var $firstImg = $('.focus li:nth-child(1) img');
-            var $ul = $('.focus ul');
-            var $li = $('.focus ul li');
-            // 3.复制索引0所在的元素，追加到ul最后面。
-            
-            // 1.focus呈现图片，宽度为第一张图片的宽度。ul的宽度=图片的宽度*图片张数
-            //  * 必须等待第一张图片加载完成后，再获取宽度
-           
-            //4.鼠标移入focus，清除定时器。鼠标移出focus，重新开启定时器
-           
-            //5.点击小圆点，获取里面的内容-1==>索引
-           
-            // you.onclick =function(){
-            //  idx++;
-            //  showPic();
-            // }
-
-            // 2.开启定时器，定义一个索引（0、1、2）改变，从而改变的是ulbox的left值
-            //  * 当索引为数组长度时，其实要呈现的是索引1所在的图片。为了让轮播图是正着滚的，同时将ul的left手动设置成0。
-          
-            //只做呈现图片
-            
-                //4.滚动过程中索引改变，去除所有的高亮，再让对应的索引高亮.
-                //  * 当滚到被复制那张图片索引时，对应的索引为0的小圆点高亮。
-               
-            
-            
-            //3.生成页码，同时根据len-1生成小圆点.默认第一个小圆点高亮.active
-           
+           $('.focus').lunbo({img:['../images/001.jpg','../images/002.jpg','../images/003.jpg']})
         })
 // 0 1 2 3(0)
 // 0 1 2
